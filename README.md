@@ -5,10 +5,17 @@
 Examples:
 
 ```xml
- <dependency>
-	    <groupId>com.github.Mineral-Industries</groupId>
-	    <artifactId>Mineral-Inventory-API</artifactId>
-	    <version>v1.0</version>
+<repositories>
+	<repository>
+		<id>jitpack.io</id>
+		<url>https://jitpack.io</url>
+	</repository>
+</repositories>
+	
+<dependency>
+	<groupId>com.github.Mineral-Industries</groupId>
+	<artifactId>Mineral-Inventory-API</artifactId>
+	<version>v1.0</version>
 </dependency>
 ```
 
