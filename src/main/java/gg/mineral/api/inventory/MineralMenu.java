@@ -9,7 +9,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import gg.mineral.practice.util.MathUtil;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 
@@ -91,13 +90,18 @@ public class MineralMenu implements MineralInventory {
 	}
 
 	protected Inventory toInventory(Player player) {
-		Inventory inventory = Bukkit.createInventory(player, Math.max(MathUtil.roundUp(size, 9), 9), title.toString());
+		Inventory inventory = Bukkit.createInventory(player, Math.max(roundUp(size, 9), 9), title.toString());
 
 		for (Map.Entry<Integer, ItemStack> e : itemMap.int2ObjectEntrySet()) {
 			inventory.setItem(e.getKey(), e.getValue());
 		}
 
 		return inventory;
+	}
+
+	private static int roundUp(int val, int multiple) {
+		int mod = val % multiple;
+		return mod == 0 ? val : val + multiple - mod;
 	}
 
 	protected Inventory inv;

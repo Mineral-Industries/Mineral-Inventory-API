@@ -1,0 +1,6 @@
+gg/mineral/api/inventory/MineralInventoryAPI.class
+gg/mineral/api/inventory/MineralInventory.class
+gg/mineral/api/inventory/MineralPlayerInventory.class
+gg/mineral/api/inventory/InventoryType.class
+gg/mineral/api/inventory/Interaction.class
+gg/mineral/api/inventory/Interaction$Type.class
