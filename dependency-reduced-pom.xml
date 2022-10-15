@@ -45,16 +45,6 @@
       </plugin>
     </plugins>
   </build>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>spigotmc-public</id>
-      <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
-    </pluginRepository>
-    <pluginRepository>
-      <id>destroystokyo</id>
-      <url>https://ci.destroystokyo.com/plugin/repository/everything/</url>
-    </pluginRepository>
-  </pluginRepositories>
   <dependencies>
     <dependency>
       <groupId>com.github.azbh111</groupId>
