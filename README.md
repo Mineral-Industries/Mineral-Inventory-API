@@ -52,7 +52,7 @@ playerInventory.set(/*X Position*/ 0, /*Y Position*/ 0, new ItemStack(Material.W
         playerWhoClicked.setAllowFlight(!playerWhoClicked.getAllowFlight());
     }
 
-    return true; // True if the event should be cancelled, false otherwis
+    return true; // True if the event should be cancelled, false otherwise
 });
 
 
