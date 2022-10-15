@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/Mineral-Industries/Mineral-Inventory-API.svg)](https://jitpack.io/#Mineral-Industries/Mineral-Inventory-API)
+
 # Mineral Inventory API
 
 Examples:
@@ -6,7 +8,7 @@ Examples:
  <dependency>
 	    <groupId>com.github.Mineral-Industries</groupId>
 	    <artifactId>Mineral-Inventory-API</artifactId>
-	    <version>master-SNAPSHOT</version>
+	    <version>v1.0</version>
 </dependency>
 ```
 
