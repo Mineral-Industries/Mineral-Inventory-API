@@ -142,4 +142,15 @@ public class MineralMenu implements MineralInventory {
 	public InventoryType getInventoryType() {
 		return InventoryType.MENU;
 	}
+
+	@Override
+	public boolean contains(Predicate<ItemStack> itemstackFunction) {
+		for (ItemStack itemstack : itemMap.values()) {
+			if (itemstackFunction.test(itemstack)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 }

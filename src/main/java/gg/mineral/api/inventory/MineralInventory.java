@@ -102,7 +102,18 @@ public interface MineralInventory {
 
     /**
      * Opens the inventory.
+     * 
+     * @param player the player to open the menu for.
      */
     public void open(Player player);
+
+    /**
+     * Check if the inventory contains an itemstack where the predicate is true.
+     * 
+     * @param itemstackFunction the itemstack predicate.
+     * 
+     * @return if it exists in the inventory.
+     */
+    public boolean contains(Predicate<ItemStack> itemstackFunction);
 
 }

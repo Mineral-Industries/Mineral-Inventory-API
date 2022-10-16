@@ -159,4 +159,15 @@ public class MineralPlayerInventory extends CraftInventoryPlayer implements Mine
     @Override
     public void open(Player player) {
     }
+
+    @Override
+    public boolean contains(Predicate<ItemStack> itemstackFunction) {
+        for (ItemStack itemstack : getContents()) {
+            if (itemstackFunction.test(itemstack)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
