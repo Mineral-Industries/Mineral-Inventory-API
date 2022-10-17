@@ -17,7 +17,7 @@ public class MineralPlayerInventory extends CraftInventoryPlayer implements Mine
     CraftPlayer holder;
     boolean fullClear = false;
 
-    public static MineralInventory create(Player player) {
+    public static MineralPlayerInventory create(Player player) {
         MineralPlayerInventory inv = playerInventoryMap.get(player.getUniqueId());
 
         if (inv == null) {
