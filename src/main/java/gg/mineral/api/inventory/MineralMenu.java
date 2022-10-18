@@ -15,6 +15,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 public class MineralMenu implements MineralInventory {
 	static Object2ObjectOpenHashMap<UUID, MineralMenu> menuMap = new Object2ObjectOpenHashMap<>();
 	String title;
+	Predicate<Interaction> openPredicate = null;
 	Int2ObjectOpenHashMap<Predicate<Interaction>> interactionMap = new Int2ObjectOpenHashMap<>();
 	Int2ObjectOpenHashMap<ItemStack> itemMap = new Int2ObjectOpenHashMap<>();
 	int size = 9;
@@ -108,6 +109,10 @@ public class MineralMenu implements MineralInventory {
 
 	@Override
 	public void open(Player player) {
+		if (openPredicate != null && openPredicate.test(new Interaction(player, Interaction.Type.INVENTORY_OPEN))) {
+			return;
+		}
+
 		if (inv == null) {
 			inv = toInventory(player);
 		}
@@ -152,5 +157,10 @@ public class MineralMenu implements MineralInventory {
 		}
 
 		return false;
+	}
+
+	@Override
+	public void whenOpened(Predicate<Interaction> interactionFunction) {
+		this.openPredicate = interactionFunction;
 	}
 }

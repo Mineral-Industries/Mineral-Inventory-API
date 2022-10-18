@@ -170,4 +170,8 @@ public class MineralPlayerInventory extends CraftInventoryPlayer implements Mine
 
         return false;
     }
+
+    @Override
+    public void whenOpened(Predicate<Interaction> interactionFunction) {
+    }
 }

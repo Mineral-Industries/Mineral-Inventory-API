@@ -108,6 +108,14 @@ public interface MineralInventory {
     public void open(Player player);
 
     /**
+     * Calls the event when opened.
+     * 
+     * @param interactionFunction the function that gets executed when the item is
+     *                            interacted with.
+     */
+    public void whenOpened(Predicate<Interaction> interactionFunction);
+
+    /**
      * Check if the inventory contains an itemstack where the predicate is true.
      * 
      * @param itemstackFunction the itemstack predicate.

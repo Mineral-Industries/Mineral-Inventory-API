@@ -7,7 +7,7 @@ public class Interaction {
     Type type;
 
     public enum Type {
-        INVENTORY_CLICK, HAND_LEFT_CLICK, HAND_RIGHT_CLICK
+        INVENTORY_CLICK, HAND_LEFT_CLICK, HAND_RIGHT_CLICK, INVENTORY_OPEN
     }
 
     public Interaction(Player player, Type type) {
