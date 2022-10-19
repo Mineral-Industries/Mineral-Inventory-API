@@ -163,4 +163,9 @@ public class MineralMenu implements MineralInventory {
 	public void whenOpened(Predicate<Interaction> interactionFunction) {
 		this.openPredicate = interactionFunction;
 	}
+
+	@Override
+	public long count(Predicate<ItemStack> itemstackFunction) {
+		return itemMap.values().stream().filter(itemstackFunction).count();
+	}
 }

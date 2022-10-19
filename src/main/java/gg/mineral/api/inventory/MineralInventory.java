@@ -124,4 +124,13 @@ public interface MineralInventory {
      */
     public boolean contains(Predicate<ItemStack> itemstackFunction);
 
+    /**
+     * Checks the number of itemstacks in the inventory that satisfy the predicate.
+     * 
+     * @param itemstackFunction the itemstack predicate.
+     * 
+     * @return the amount.
+     */
+    public long count(Predicate<ItemStack> itemstackFunction);
+
 }

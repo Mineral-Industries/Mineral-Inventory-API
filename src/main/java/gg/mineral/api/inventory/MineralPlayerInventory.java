@@ -174,4 +174,16 @@ public class MineralPlayerInventory extends CraftInventoryPlayer implements Mine
     @Override
     public void whenOpened(Predicate<Interaction> interactionFunction) {
     }
+
+    @Override
+    public long count(Predicate<ItemStack> itemstackFunction) {
+        int count = 0;
+        for (ItemStack itemstack : getContents()) {
+            if (itemstackFunction.test(itemstack)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
 }
