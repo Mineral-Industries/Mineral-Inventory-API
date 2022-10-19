@@ -15,7 +15,7 @@ Examples:
 <dependency>
 	<groupId>com.github.Mineral-Industries</groupId>
 	<artifactId>Mineral-Inventory-API</artifactId>
-	<version>v1.0.4</version>
+	<version>v1.0.5</version>
 </dependency>
 ```
 
