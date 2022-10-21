@@ -20,9 +20,10 @@ public interface MineralInventory {
     /**
      * Sets the contents of the inventory.
      * 
-     * @param items the array of items.
+     * @param items     the array of items.
+     * @param cancelled if all events related to the item are cancelled.
      */
-    public void setContents(ItemStack[] items);
+    public void setContents(ItemStack[] items, boolean cancelled);
 
     /**
      * Clears the inventory.
@@ -35,8 +36,9 @@ public interface MineralInventory {
      * @param x         the x position the item should be set to.
      * @param y         the y position the item should be set to.
      * @param itemstack the itemstatck to be set in the slot.
+     * @param cancelled if all events related to the item are cancelled.
      */
-    public void set(int x, int y, ItemStack itemstack);
+    public void set(int x, int y, ItemStack itemstack, boolean cancelled);
 
     /**
      * Sets the item in the inventory.
@@ -68,8 +70,9 @@ public interface MineralInventory {
      * Adds the item in the inventory.
      * 
      * @param itemstack the itemstatck to be set in the slot.
+     * @param cancelled if all events related to the item are cancelled.
      */
-    public void add(ItemStack itemstack);
+    public void add(ItemStack itemstack, boolean cancelled);
 
     /**
      * Sets the item in the inventory.

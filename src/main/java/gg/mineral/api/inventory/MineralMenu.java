@@ -36,18 +36,25 @@ public class MineralMenu implements MineralInventory {
 	}
 
 	@Override
-	public void set(int x, int y, ItemStack itemstack) {
-		set(x + (y * 9), itemstack);
+	public void set(int x, int y, ItemStack itemstack, boolean cancelled) {
+		set(x + (y * 9), itemstack, cancelled ? interaction -> {
+			return true;
+		} : null);
 	}
 
-	private void set(int slot, ItemStack itemstack) {
+	private void set(int slot, ItemStack itemstack, Predicate<Interaction> interactionFunction) {
 
 		if (itemstack == null || slot < 0) {
 			return;
 		}
 
 		itemMap.put(slot, itemstack);
-		interactionMap.remove(slot);
+
+		if (interactionFunction != null) {
+			interactionMap.put(slot, interactionFunction);
+		} else {
+			interactionMap.remove(slot);
+		}
 
 		if (slot > size - 1) {
 			size = slot + 1;
@@ -63,20 +70,20 @@ public class MineralMenu implements MineralInventory {
 	@Override
 	public void set(int x, int y, ItemStack itemstack, Predicate<Interaction> interactionFunction) {
 		int slot = x + (y * 9);
-		set(slot, itemstack);
-		interactionMap.put(slot, interactionFunction);
+		set(slot, itemstack, interactionFunction);
 	}
 
 	@Override
-	public void add(ItemStack itemstack) {
-		set(findUnusedSlot(), itemstack);
+	public void add(ItemStack itemstack, boolean cancelled) {
+		set(findUnusedSlot(), itemstack, cancelled ? interaction -> {
+			return true;
+		} : null);
 	}
 
 	@Override
 	public void add(ItemStack itemstack, Predicate<Interaction> interactionFunction) {
 		int slot = findUnusedSlot();
-		set(slot, itemstack);
-		interactionMap.put(slot, interactionFunction);
+		set(slot, itemstack, interactionFunction);
 	}
 
 	@Override
@@ -127,9 +134,12 @@ public class MineralMenu implements MineralInventory {
 	}
 
 	@Override
-	public void setContents(ItemStack[] contents) {
+	public void setContents(ItemStack[] contents, boolean cancelled) {
+		Predicate<Interaction> interactionFunction = cancelled ? interaction -> {
+			return true;
+		} : null;
 		for (int i = 0; i < contents.length; i++) {
-			set(i, contents[i]);
+			set(i, contents[i], interactionFunction);
 		}
 	}
 

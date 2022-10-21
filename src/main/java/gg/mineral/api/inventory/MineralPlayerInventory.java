@@ -46,44 +46,33 @@ public class MineralPlayerInventory extends CraftInventoryPlayer implements Mine
         }
     }
 
-    @Override
-    public void setItem(int slot, ItemStack itemstack) {
-        try {
+    public void setItem(int slot, ItemStack itemstack, Predicate<Interaction> interactionFunction) {
+        if (interactionFunction != null) {
+            interactionMap.put(slot, interactionFunction);
+        } else {
             interactionMap.remove(slot);
-            super.setItem(slot, itemstack);
-        } catch (Exception e) {
-
         }
+
+        super.setItem(slot, itemstack);
     }
 
     @Override
-    public void set(int x, int y, ItemStack itemstack) {
-        try {
-            int slot = x + (y * 9);
-            setItem(slot, itemstack);
-        } catch (Exception e) {
-
-        }
+    public void set(int x, int y, ItemStack itemstack, boolean cancelled) {
+        setItem(x + (y * 9), itemstack, cancelled ? interaction -> {
+            return true;
+        } : null);
     }
 
     @Override
     public void set(int x, int y, ItemStack itemstack, Predicate<Interaction> interactionFunction) {
-        try {
-            int slot = x + (y * 9);
-            interactionMap.put(slot, interactionFunction);
-            super.setItem(slot, itemstack);
-        } catch (Exception e) {
-
-        }
+        setItem(x + (y * 9), itemstack, interactionFunction);
     }
 
     @Override
-    public void add(ItemStack itemstack) {
-        try {
-            setItem(findUnusedSlot(), itemstack);
-        } catch (Exception e) {
-
-        }
+    public void add(ItemStack itemstack, boolean cancelled) {
+        setItem(findUnusedSlot(), itemstack, cancelled ? interaction -> {
+            return true;
+        } : null);
     }
 
     @Override
@@ -132,26 +121,6 @@ public class MineralPlayerInventory extends CraftInventoryPlayer implements Mine
     }
 
     @Override
-    public void setContents(ItemStack[] items) {
-
-        net.minecraft.server.v1_8_R3.ItemStack[] mcItems = this.getInventory().getContents();
-        for (int i = 0; i < mcItems.length; ++i) {
-            if (i >= items.length) {
-                setItem(i, null);
-                continue;
-            }
-
-            if (i < 8) {
-                fullClear = true;
-            }
-
-            setItem(i, items[i]);
-        }
-
-        holder.updateInventory();
-    }
-
-    @Override
     public InventoryType getInventoryType() {
         return InventoryType.PLAYER;
     }
@@ -185,5 +154,27 @@ public class MineralPlayerInventory extends CraftInventoryPlayer implements Mine
         }
 
         return count;
+    }
+
+    @Override
+    public void setContents(ItemStack[] items, boolean cancelled) {
+        net.minecraft.server.v1_8_R3.ItemStack[] mcItems = this.getInventory().getContents();
+        Predicate<Interaction> interactionFunction = cancelled ? interaction -> {
+            return true;
+        } : null;
+        for (int i = 0; i < mcItems.length; ++i) {
+            if (i >= items.length) {
+                setItem(i, null, null);
+                continue;
+            }
+
+            if (i < 8) {
+                fullClear = true;
+            }
+
+            setItem(i, items[i], interactionFunction);
+        }
+
+        holder.updateInventory();
     }
 }
