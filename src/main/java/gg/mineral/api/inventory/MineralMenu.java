@@ -42,7 +42,8 @@ public class MineralMenu implements MineralInventory {
 		} : null);
 	}
 
-	private void set(int slot, ItemStack itemstack, Predicate<Interaction> interactionFunction) {
+	@Override
+	public void set(int slot, ItemStack itemstack, Predicate<Interaction> interactionFunction) {
 
 		if (itemstack == null || slot < 0) {
 			return;

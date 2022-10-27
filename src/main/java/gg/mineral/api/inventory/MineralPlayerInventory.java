@@ -177,4 +177,9 @@ public class MineralPlayerInventory extends CraftInventoryPlayer implements Mine
 
         holder.updateInventory();
     }
+
+    @Override
+    public void set(int slot, ItemStack itemstack, Predicate<Interaction> interactionFunction) {
+        setItem(slot, itemstack, interactionFunction);
+    }
 }

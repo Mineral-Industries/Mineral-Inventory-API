@@ -66,6 +66,8 @@ public interface MineralInventory {
      */
     public void set(int x, int y, ItemStack itemstack, Predicate<Interaction> interactionFunction);
 
+    public void set(int slot, ItemStack itemstack, Predicate<Interaction> interactionFunction);
+
     /**
      * Adds the item in the inventory.
      * 
